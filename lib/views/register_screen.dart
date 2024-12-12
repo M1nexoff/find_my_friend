@@ -16,7 +16,7 @@ class RegisterScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text("Register"),
+        title: Text("Register",style: TextStyle(color: Theme.of(context).colorScheme.background),),
         centerTitle: true,
         elevation: 0,
       ),

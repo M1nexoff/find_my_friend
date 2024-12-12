@@ -1,7 +1,9 @@
+import 'package:find_my_friend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:find_my_friend/controllers/map_controller.dart';
 import 'package:find_my_friend/data/models/user_model.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'make_profile.dart';
 import 'map_screen.dart';
 import 'login_screen.dart';
@@ -28,10 +30,22 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home"),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.sunny),
+            onPressed: () {
+              if (themeProvider.themeData == ThemeData.light()) {
+                themeProvider.setThemeData(ThemeData.dark());
+              } else {
+                themeProvider.setThemeData(ThemeData.light());
+              }
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.map),
             onPressed: () => Get.to(() => MapScreen()),

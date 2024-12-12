@@ -31,6 +31,7 @@ class UserRepository {
 
   /// Register a new user
   Future<String> register(String email, String password) async {
+    // if()Get
     // if (!RegExp(r'^[a-zA-Z0-9]{5,}\$').hasMatch(email.split('@')[0])) {
     //   return 'Name must be at least 5 characters long, letters and numbers only';
     // }

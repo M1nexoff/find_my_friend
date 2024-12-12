@@ -47,6 +47,9 @@ dependencies:
   get: ^4.6.6
   image_picker: ^1.1.2
   cross_file: ^0.3.4+2
+  provider: ^6.1.2
+  shared_preferences: ^2.3.3
+
   hl_image_picker: ^1.2.16
 dev_dependencies:
   flutter_test:
