@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "984531091696",
+    "project_id": "find-my-friend-d39b8",
+    "storage_bucket": "find-my-friend-d39b8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984531091696:android:337c86b190fc563da6c235",
+        "android_client_info": {
+          "package_name": "uz.m1nex.find_my_friend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmOxPYl3HQihDfKzWB0VnOAl1wacUL5z0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
