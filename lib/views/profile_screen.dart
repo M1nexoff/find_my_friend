@@ -18,11 +18,32 @@ class ProfileScreen extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              CircleAvatar(
-                radius: 60,
-                backgroundImage: NetworkImage(
-                  user.imageUrl ??
-                      'https://cdn-icons-png.flaticon.com/512/3282/3282224.png',
+              ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Stack(
+                  children: [
+                    Image.network(
+                      user.imageUrl??'https://cdn-icons-png.flaticon.com/512/3282/3282224.png',
+                      width: 150,
+                      height: 150,
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return
+                          CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes !=
+                                null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                                : null,
+                          );
+                      },
+                      cacheHeight: 1024,
+                      cacheWidth: 1024,
+                      fit: BoxFit.cover,
+                    ),
+                    SizedBox.square(dimension: 20)
+                  ],
                 ),
               ),
               const SizedBox(height: 20),

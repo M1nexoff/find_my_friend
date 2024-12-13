@@ -87,8 +87,33 @@ class HomeScreen extends StatelessWidget {
               return ListTile(
                 leading: GestureDetector(
                   onTap: () => Get.to(() => ProfileScreen(user: user)),
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(user.imageUrl ?? ''),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Stack(
+                      children: [
+                        Image.network(
+                          user.imageUrl??'https://cdn-icons-png.flaticon.com/512/3282/3282224.png',
+                          width: 50,
+                          height: 50,
+                          loadingBuilder: (BuildContext context, Widget child,
+                              ImageChunkEvent? loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return
+                              CircularProgressIndicator(
+                                value: loadingProgress.expectedTotalBytes !=
+                                    null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                    loadingProgress.expectedTotalBytes!
+                                    : null,
+                            );
+                          },
+                          cacheHeight: 1024,
+                          cacheWidth: 1024,
+                          fit: BoxFit.cover,
+                        ),
+                        SizedBox.square(dimension: 20)
+                      ],
+                    ),
                   ),
                 ),
                 title: Text(user.name ?? "Unknown"),

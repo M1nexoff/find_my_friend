@@ -1,8 +1,10 @@
 import 'package:find_my_friend/views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../controllers/auth_controller.dart';
+import '../main.dart';
 import 'make_profile.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -12,11 +14,24 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text("Register",style: TextStyle(color: Theme.of(context).colorScheme.background),),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        title: Text("Register",style: TextStyle(color: Theme.of(context).colorScheme.onBackground),),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.sunny),
+            onPressed: () {
+              if (themeProvider.themeData == ThemeData.light()) {
+                themeProvider.setThemeData(ThemeData.dark());
+              } else {
+                themeProvider.setThemeData(ThemeData.light());
+              }
+            },
+          )
+        ],
         centerTitle: true,
         elevation: 0,
       ),
@@ -26,20 +41,20 @@ class RegisterScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 "Create Your Account",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black87,
+                  color: Theme.of(context).colorScheme.onBackground,
                 ),
               ),
               const SizedBox(height: 8),
-              const Text(
+              Text(
                 "Please sign up to continue",
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black54,
+                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7),
                 ),
               ),
               const SizedBox(height: 32),
@@ -48,11 +63,13 @@ class RegisterScreen extends StatelessWidget {
               TextField(
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
-                  labelText: "Email",
-                  prefixIcon: const Icon(Icons.email_outlined),
+                  hintText: "Email",
+                  hintStyle: TextStyle(color: Colors.white),
+                  prefixIcon: const Icon(Icons.email_outlined,color: Colors.white),
                   filled: true,
-                  fillColor: Colors.blueGrey[50],
+                  fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
                   contentPadding: const EdgeInsets.symmetric(
                       vertical: 16.0, horizontal: 12.0),
                   border: OutlineInputBorder(
@@ -67,11 +84,13 @@ class RegisterScreen extends StatelessWidget {
               TextField(
                 controller: passwordController,
                 obscureText: true,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
-                  labelText: "Password",
-                  prefixIcon: const Icon(Icons.lock_outline),
+                  hintText: "Password",
+                  hintStyle: TextStyle(color: Colors.white),
+                  prefixIcon: const Icon(Icons.lock_outline,color: Colors.white),
                   filled: true,
-                  fillColor: Colors.blueGrey[50],
+                  fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
                   contentPadding: const EdgeInsets.symmetric(
                       vertical: 16.0, horizontal: 12.0),
                   border: OutlineInputBorder(
@@ -127,9 +146,9 @@ class RegisterScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                   Text(
                     "Already have an account? ",
-                    style: TextStyle(fontSize: 16, color: Colors.black87),
+                    style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.onBackground),
                   ),
                   TextButton(
                     onPressed: () => Get.back(),
